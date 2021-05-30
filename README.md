@@ -16,7 +16,7 @@
 
 **Post Content**
 <p align="center">
-    <img src=".github/post_detail.png" height="400px">
+    <img src=".github/post_detail.png">
 </p>
 
 ## About
