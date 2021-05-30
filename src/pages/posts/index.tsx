@@ -28,8 +28,8 @@ export default function Posts({ posts }: PostProps) {
             <main className={styles.container}>
                 <div className={styles.posts}>
                     { posts.map(post => (
-                        <Link href={`/posts/preview/${post.slug}`}>
-                            <a key={post.slug}>
+                        <Link href={`/posts/preview/${post.slug}`} key={post.slug}>
+                            <a>
                                 <time>{post.updatedAt}</time>
                                 <strong>{post.title}</strong>
                                 <p>{post.excerpt}</p>
@@ -50,6 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
     ], {
         fetch: ['post.title', 'post.content'],
         lang : 'pt-br',
+        orderings: '[document.first_publication_date desc]',
         pageSize: 100
     });
 
