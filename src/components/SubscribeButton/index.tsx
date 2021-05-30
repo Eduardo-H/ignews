@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
+
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+
 import styles from './styles.module.scss';
 
 interface SubscribeButtonProps {
@@ -9,10 +13,14 @@ interface SubscribeButtonProps {
 }
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+    const [isLoading, setIsLoading] = useState(false);
+
     const [session] = useSession();
     const router = useRouter();
 
     async function handleSubscribe() {
+        setIsLoading(true);
+
         if (!session) {
             signIn('github');
             return;
@@ -42,7 +50,15 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
             className={styles.subscribeButton}
             onClick={handleSubscribe}
         >
-            { session?.activeSubscription ? 'See the posts' : 'Subscribe now'}
+            { isLoading ? (
+                <AiOutlineLoading3Quarters 
+                    color="#121214" 
+                    className={styles.loadingIconClose}
+                />
+            ) : (
+                session?.activeSubscription ? 'See the posts' : 'Subscribe now'
+            ) }
+            
         </button>
     );
 }
