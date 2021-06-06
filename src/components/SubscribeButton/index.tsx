@@ -8,11 +8,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import styles from './styles.module.scss';
 
-interface SubscribeButtonProps {
-    priceId: string;
-}
-
-export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+export function SubscribeButton() {
     const [isLoading, setIsLoading] = useState(false);
 
     const [session] = useSession();
