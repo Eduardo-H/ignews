@@ -15,7 +15,7 @@ export function SubscribeButton() {
     const router = useRouter();
 
     async function handleSubscribe() {
-        setIsLoading(true);
+        // setIsLoading(true);
 
         if (!session) {
             signIn('github');
