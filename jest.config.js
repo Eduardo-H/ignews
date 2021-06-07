@@ -9,5 +9,11 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     "\\.(scss|css|sass)$": "identity-obj-proxy"
-  }
+  },
+  collectCovarage: true,
+  collectCovarageFrom: [
+    "src/**/*.tsx",
+    "!src/**/*.spec.tsx",
+  ],
+  covarageReporters: ["lcov", "json"]
 };
